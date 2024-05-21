@@ -7,10 +7,12 @@ namespace PatientInfoPortal.App.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly HttpClient _httpClient;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, HttpClient httpClient)
         {
             _logger = logger;
+            _httpClient = httpClient;
         }
 
         public IActionResult Index()
@@ -19,6 +21,11 @@ namespace PatientInfoPortal.App.Controllers
         }
 
         public IActionResult Privacy()
+        {
+            return View();
+        }
+
+        public IActionResult Create()
         {
             return View();
         }
