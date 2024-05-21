@@ -35,13 +35,9 @@ public partial class PatientInfoPortalContext : DbContext
     {
         modelBuilder.Entity<AllergiesDetail>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Allergie__3214EC27E2AC2851");
-
             entity.ToTable("Allergies_Details");
 
-            entity.Property(e => e.Id)
-                .ValueGeneratedNever()
-                .HasColumnName("ID");
+            entity.Property(e => e.Id).HasColumnName("ID");
             entity.Property(e => e.AllergiesId).HasColumnName("AllergiesID");
             entity.Property(e => e.PatientId).HasColumnName("PatientID");
 
@@ -56,47 +52,37 @@ public partial class PatientInfoPortalContext : DbContext
 
         modelBuilder.Entity<Allergy>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Allergie__3214EC27117D327A");
-
             entity.Property(e => e.Id)
                 .ValueGeneratedNever()
                 .HasColumnName("ID");
-            entity.Property(e => e.Name).HasMaxLength(1);
+            entity.Property(e => e.Name).HasMaxLength(100);
         });
 
         modelBuilder.Entity<DiseaseInformation>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Disease___3214EC27AB01E1FE");
-
             entity.ToTable("Disease_Information");
 
             entity.Property(e => e.Id)
                 .ValueGeneratedNever()
                 .HasColumnName("ID");
-            entity.Property(e => e.Name).HasMaxLength(1);
+            entity.Property(e => e.Name).HasMaxLength(250);
         });
 
         modelBuilder.Entity<Ncd>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__NCD__3214EC273D7A38E1");
-
             entity.ToTable("NCD");
 
             entity.Property(e => e.Id)
                 .ValueGeneratedNever()
                 .HasColumnName("ID");
-            entity.Property(e => e.Name).HasMaxLength(1);
+            entity.Property(e => e.Name).HasMaxLength(100);
         });
 
         modelBuilder.Entity<NcdDetail>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__NCD_Deta__3214EC27E65622EF");
-
             entity.ToTable("NCD_Details");
 
-            entity.Property(e => e.Id)
-                .ValueGeneratedNever()
-                .HasColumnName("ID");
+            entity.Property(e => e.Id).HasColumnName("ID");
             entity.Property(e => e.Ncdid).HasColumnName("NCDID");
             entity.Property(e => e.PatientId).HasColumnName("PatientID");
 
@@ -111,14 +97,16 @@ public partial class PatientInfoPortalContext : DbContext
 
         modelBuilder.Entity<PatientsInformation>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Patients__3214EC274AA5EFF7");
-
             entity.ToTable("Patients_Information");
 
-            entity.Property(e => e.Id)
-                .ValueGeneratedNever()
-                .HasColumnName("ID");
-            entity.Property(e => e.Name).HasMaxLength(1);
+            entity.Property(e => e.Id).HasColumnName("ID");
+            entity.Property(e => e.DiseaseId).HasColumnName("DiseaseID");
+            entity.Property(e => e.Name).HasMaxLength(100);
+
+            entity.HasOne(d => d.Disease).WithMany(p => p.PatientsInformations)
+                .HasForeignKey(d => d.DiseaseId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_Patients_Disease_Information");
         });
 
         OnModelCreatingPartial(modelBuilder);

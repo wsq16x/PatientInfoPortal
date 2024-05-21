@@ -18,7 +18,10 @@
 
   <ItemGroup>
     <Folder Include="SQLScripts\" />
-    <Folder Include="Repository\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\PatientInfoPortal.Shared\PatientInfoPortal.Shared.csproj" />
   </ItemGroup>
 
 </Project>
