@@ -4,7 +4,15 @@
     ViewData["Title"] = "Patients";
 }
 
-<h1>Patients</h1>
+
+<div class="row">
+    <div class="col">
+        <h1>Patients</h1>
+    </div>
+    <div class="col">
+        <a asp-action="Create" class="btn btn-success">Create New</a>
+    </div>
+</div>
 
 <table class="table">
     <thead>
@@ -44,4 +52,3 @@
     </tbody>
 </table>
 
-<a asp-action="Create" class="btn btn-success">Create New</a>
