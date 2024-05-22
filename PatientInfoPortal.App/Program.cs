@@ -1,6 +1,14 @@
+using PatientInfoPortal.App.Services;
+using System.Threading.RateLimiting;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Services.AddHttpClient<ApiService>(service =>
+    
+service.BaseAddress = new Uri("https://localhost:7186/")
+);
+
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();

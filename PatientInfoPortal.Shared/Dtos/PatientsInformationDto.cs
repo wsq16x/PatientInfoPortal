@@ -23,8 +23,8 @@ namespace PatientInfoPortal.Shared.Dtos
         public int DiseaseId { get; set; }
         public bool Epilepsy { get; set; }
 
-        public int[] NcdIds { get; set; } = null!;
-        public int[] AllergyIds { get; set; } = null!;
+        public List<int>? NcdIds { get; set; } = new List<int>();
+        public List<int>? AllergyIds { get; set; } = new List<int>();
     }
 
     public class PatientUpdateDto : PatientCreateDto

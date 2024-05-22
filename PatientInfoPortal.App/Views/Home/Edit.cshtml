@@ -1,17 +1,18 @@
-﻿@model PatientInfoPortal.App.Models.CreateViewModel
+﻿@model PatientInfoPortal.App.Models.EditViewModel
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Edit";
 }
 
 <h1>View</h1>
 
-<h4>Add Patient</h4>
+<h4>Edit Patient</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Create">
+        <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id"/>
             <div class="form-group">
                 <label asp-for="PatientName" class="control-label"></label>
                 <input asp-for="PatientName" class="form-control" />
@@ -45,7 +46,7 @@
                         <button type="button" id="removeNcd" class="btn btn-secondary btn-block">Remove</button>
                     </div>
                     <div class="col-md-5">
-                        <select id="selectedNcds" class="form-control" asp-for="NcdIds" multiple="multiple"></select>
+                        <select id="selectedNcds" class="form-control" asp-for="NcdIds" multiple="multiple" asp-items="Model.SelectedNcds"></select>
                     </div>
                 </div>
             </div>
@@ -66,7 +67,7 @@
                         <button type="button" id="removeAllergy" class="btn btn-secondary btn-block">Remove</button>
                     </div>
                     <div class="col-md-5">
-                        <select id="selectedAllergies" class="form-control" asp-for="AllergyIds" multiple="multiple"></select>
+                        <select id="selectedAllergies" class="form-control" asp-for="AllergyIds" multiple="multiple" asp-items="Model.SelectedAllergies"></select>
                     </div>
                 </div>
             </div>
@@ -83,7 +84,9 @@
 </div>
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
     <script>
         $(document).ready(function () {
             // NCDs
@@ -114,3 +117,4 @@
         });
     </script>
 }
+
