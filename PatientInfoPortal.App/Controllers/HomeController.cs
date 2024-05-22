@@ -76,6 +76,13 @@ namespace PatientInfoPortal.App.Controllers
             return View(createVm);
         }
 
+        [HttpGet]
+        public async Task<IActionResult> Details(int id)
+        {
+            var patient = await _apiService.GetPatientById(id);
+            return View(patient);
+        }
+
         [HttpPost]
         public async Task<IActionResult> Create(CreateViewModel cvm)
         {
