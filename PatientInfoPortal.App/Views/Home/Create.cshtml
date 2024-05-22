@@ -3,76 +3,96 @@
 @{
     ViewData["Title"] = "Create";
 }
-
-<h1>View</h1>
-
-<h4>Add Patient</h4>
+<h1>Add Patient</h1>
 <hr />
 <div class="row">
-    <div class="col-md-4">
+    <div class="col">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="PatientName" class="control-label"></label>
-                <input asp-for="PatientName" class="form-control" />
-                <span asp-validation-for="PatientName" class="text-danger"></span>
+                <div class="row mb-2">
+                    <div class="col-2">
+                        <label asp-for="PatientName" class="control-label"></label>
+                    </div>
+                    <div class="col">
+                        <input asp-for="PatientName" class="form-control" />
+                        <span asp-validation-for="PatientName" class="text-danger"></span>
+                    </div>
+                </div>
             </div>
             <div class="form-group">
-                <label asp-for="DiseaseId" class="control-label"></label>
-                <select asp-for="DiseaseId" class="form-control" asp-items="Model.Diseases"></select>
-                <span asp-validation-for="DiseaseId" class="text-danger"></span>
+                <div class="row mb-2">
+                    <div class="col-2">
+                        <label asp-for="DiseaseId" class="control-label"></label>
+                    </div>
+                    <div class="col">
+                        <select asp-for="DiseaseId" class="form-control" asp-items="Model.Diseases"></select>
+                        <span asp-validation-for="DiseaseId" class="text-danger"></span>
+                    </div>
+                </div>
             </div>
 
             <div class="form-group">
-                <label asp-for="EpilepsyVal" class="control-label"></label>
-                <select asp-for="EpilepsyVal" class="form-control" asp-items="Model.EpilepsyOptions"></select>
-                <span asp-validation-for="EpilepsyVal" class="text-danger"></span>
+                <div class="row mb-2">
+                    <div class="col-2">
+                        <label asp-for="EpilepsyVal" class="control-label"></label>
+                    </div>
+                    <div class="col">
+                        <select asp-for="EpilepsyVal" class="form-control" asp-items="Model.EpilepsyOptions"></select>
+                        <span asp-validation-for="EpilepsyVal" class="text-danger"></span>
+                    </div>
+                </div>
             </div>
 
             <div class="form-group">
-                <label asp-for="NcdIds" class="control-label">Other NCDs</label>
-                <div class="row">
-                    <div class="col-md-5">
-                        <select id="availableNcds" class="form-control" multiple="multiple">
-                            @foreach (var ncd in Model.Ncds)
-                            {
-                                <option value="@ncd.Value">@ncd.Text</option>
-                            }
-                        </select>
+                <div class="row mb-2">
+                    <div class="col-2">
+                        <label asp-for="NcdIds" class="control-label">Other NCDs</label>
                     </div>
-                    <div class="col-md-2 text-center">
-                        <button type="button" id="addNcd" class="btn btn-primary btn-block">Add ></button>
-                        <button type="button" id="removeNcd" class="btn btn-secondary btn-block">Remove</button>
+                    <div class="col">
+                        <select id="availableNcds" class="form-control" multiple="multiple" asp-items="Model.Ncds"></select>
                     </div>
-                    <div class="col-md-5">
+                    <div class="col-1 text-center">
+                        <div class="row mb-1">
+                            <button type="button" id="addNcd" class="btn btn-sm btn-outline-primary">Add ></button>
+                        </div>
+                        <div class="row">
+                            <button type="button" id="removeNcd" class="btn btn-sm btn-outline-secondary">< Remove</button>
+                        </div>
+                    </div>
+                    <div class="col">
                         <select id="selectedNcds" class="form-control" asp-for="NcdIds" multiple="multiple"></select>
                     </div>
                 </div>
             </div>
 
             <div class="form-group">
-                <label asp-for="AllergyIds" class="control-label">Allergies</label>
-                <div class="row">
-                    <div class="col-md-5">
-                        <select id="availableAllergies" class="form-control" multiple="multiple">
-                            @foreach (var allergy in Model.Allergies)
-                            {
-                                <option value="@allergy.Value">@allergy.Text</option>
-                            }
-                        </select>
+                <div class="row mb-5">
+                    <div class="col-2">
+                        <label asp-for="AllergyIds" class="control-label">Allergies</label>
                     </div>
-                    <div class="col-md-2 text-center">
-                        <button type="button" id="addAllergy" class="btn btn-primary btn-block">Add ></button>
-                        <button type="button" id="removeAllergy" class="btn btn-secondary btn-block">Remove</button>
+                    <div class="col">
+                        <select id="availableAllergies" class="form-control" multiple="multiple" asp-items="Model.Allergies"></select>
                     </div>
-                    <div class="col-md-5">
+                    <div class="col-1 text-center">
+                        <div class="row mb-1">
+                            <button type="button" id="addAllergy" class="btn btn-sm btn-outline-primary">Add ></button>
+                        </div>
+                        <div class="row mb-1">
+                            <button type="button" id="removeAllergy" class="btn btn-sm btn-outline-secondary">< Remove</button>
+                        </div>
+                    </div>
+                    <div class="col">
                         <select id="selectedAllergies" class="form-control" asp-for="AllergyIds" multiple="multiple"></select>
                     </div>
                 </div>
             </div>
-
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <div class="row">
+                    <div class="col text-center">
+                        <input type="submit" value="Save" class="btn btn-primary" />
+                    </div>
+                </div>
             </div>
         </form>
     </div>
