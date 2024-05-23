@@ -24,3 +24,4 @@ service.BaseAddress = new Uri("https://localhost:7186/")
 );
 ```
 6. In visual studio configure startup project to start both PatientInfoPortal.Api (first) and PatientInfoPortal.App project.
+7. Start the application in visual studio. Two browser window should open for swagger and the application.
