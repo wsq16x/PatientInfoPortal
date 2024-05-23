@@ -12,8 +12,15 @@ The Solution contains three projects.
 
 ## Steps to run
 1. Clone the repository.
-2. Run the SQL Script in a new or existing database to create the tables. (./PatientInfoPortal.Api/SQLScripts/database_schema.sql)
+2. Run the SQL Script in a new or existing database to create the tables. (database_schema.sql)
 3. Open the solution in Visual Studio.
 4. replace the ConnectionString (DbConn) in appsettings.json file in the PatientInfoPortal.Api project with your database connection string.
 5. Edit the Program.cs file in PatientInfoPortal.App project to set your port for API (if necessary).
-6. In visual studio configure startup project to start both PatientInfoPortal.Api and PatientInfoPortal.App project in order.
+"""
+// Add services to the container.
+builder.Services.AddHttpClient<ApiService>(service =>
+    
+service.BaseAddress = new Uri("https://localhost:7186/")
+);
+"""
+7. In visual studio configure startup project to start both PatientInfoPortal.Api and PatientInfoPortal.App project in order.
